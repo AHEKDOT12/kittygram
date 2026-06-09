@@ -1,8 +1,8 @@
 # Kittygram
 
-Kittygram is a training full-stack web application for managing a personal catalog of cats. Users can register, log in, add cats, edit their data, upload photos, assign achievements, and delete their own records.
+Kittygram — учебное full-stack веб-приложение для ведения личного каталога котиков. Пользователь может зарегистрироваться, войти в аккаунт, добавить котиков, редактировать их данные, загружать фотографии, назначать достижения и удалять собственные записи.
 
-## Technology Stack
+## Стек технологий
 
 ### Backend
 
@@ -20,20 +20,20 @@ Kittygram is a training full-stack web application for managing a personal catal
 - React
 - Vite
 - CSS
-- localStorage for token storage
+- localStorage для хранения токена
 
-## Features
+## Возможности
 
-- User registration and authentication.
-- Token-based login and logout through Djoser.
-- Listing cats owned by the current authenticated user.
-- Creating, editing, and deleting cats.
-- Assigning achievements to cats.
-- Reusing achievements by name.
-- Uploading cat photos from the frontend as base64 images.
-- Serving uploaded media files in development mode.
+- Регистрация и аутентификация пользователей.
+- Вход и выход по токену через Djoser.
+- Получение списка котиков текущего пользователя.
+- Создание, редактирование и удаление котиков.
+- Назначение достижений котикам.
+- Повторное использование достижений по названию.
+- Загрузка фотографий с frontend в формате base64.
+- Раздача загруженных media-файлов в режиме разработки.
 
-## Project Structure
+## Структура проекта
 
 ```text
 kitty-gram/
@@ -54,47 +54,47 @@ kitty-gram/
 +-- README.md
 ```
 
-## Local Development
+## Локальный запуск
 
-The backend and frontend must be started in separate terminals.
+Backend и frontend запускаются в двух отдельных терминалах.
 
 ### Backend
 
-Open a terminal in VS Code and run:
+Откройте терминал в VS Code и выполните:
 
 ```powershell
 cd C:\work-django\kitty-gram\backend
 .\venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
 ```
 
-The backend API will be available at:
+Backend API будет доступен по адресу:
 
 ```text
 http://127.0.0.1:8000/api/
 ```
 
-Opening `http://127.0.0.1:8000/` directly returns `404 Page not found` because the backend root URL is not used by the application.
+Адрес `http://127.0.0.1:8000/` возвращает `404 Page not found`, потому что корневой URL backend не используется приложением.
 
 ### Frontend
 
-Open a second terminal in VS Code and run:
+Откройте второй терминал в VS Code и выполните:
 
 ```powershell
 cd C:\work-django\kitty-gram\frontend
 npm.cmd run dev
 ```
 
-The frontend will be available at:
+Frontend будет доступен по адресу:
 
 ```text
 http://127.0.0.1:3000/
 ```
 
-Use this address to register, log in, and work with the application.
+Именно этот адрес нужно открыть в браузере для регистрации, входа и работы с приложением.
 
-## Backend Setup From Scratch
+## Настройка backend с нуля
 
-If the virtual environment does not exist, create and prepare it:
+Если виртуальное окружение отсутствует, создайте и подготовьте его:
 
 ```powershell
 cd C:\work-django\kitty-gram\backend
@@ -103,36 +103,36 @@ python -m venv venv
 .\venv\Scripts\python.exe manage.py migrate
 ```
 
-Optional seed data:
+Дополнительно можно загрузить тестовые данные:
 
 ```powershell
 .\venv\Scripts\python.exe manage.py seed
 ```
 
-Optional superuser:
+Дополнительно можно создать администратора:
 
 ```powershell
 .\venv\Scripts\python.exe manage.py createsuperuser
 ```
 
-## Frontend Setup From Scratch
+## Настройка frontend с нуля
 
-If dependencies are not installed:
+Если зависимости не установлены:
 
 ```powershell
 cd C:\work-django\kitty-gram\frontend
 npm.cmd install
 ```
 
-Build production assets:
+Сборка production-версии:
 
 ```powershell
 npm.cmd run build
 ```
 
-## API Endpoints
+## API endpoints
 
-### Authentication
+### Аутентификация
 
 ```text
 POST /api/users/
@@ -141,7 +141,7 @@ POST /api/token/logout/
 GET  /api/users/me/
 ```
 
-### Cats
+### Котики
 
 ```text
 GET    /api/cats/
@@ -151,7 +151,7 @@ PATCH  /api/cats/{id}/
 DELETE /api/cats/{id}/
 ```
 
-### Achievements
+### Достижения
 
 ```text
 GET    /api/achievements/
@@ -161,13 +161,13 @@ PATCH  /api/achievements/{id}/
 DELETE /api/achievements/{id}/
 ```
 
-Protected endpoints require a token:
+Для защищённых endpoints требуется токен:
 
 ```text
 Authorization: Token <token>
 ```
 
-## Example Cat Payload
+## Пример payload для создания котика
 
 ```json
 {
@@ -175,43 +175,43 @@ Authorization: Token <token>
   "color": "#c8ff3b",
   "birth_year": 2020,
   "achievements": [
-    { "name": "Catches mice" },
-    { "name": "Sleeps 20 hours" }
+    { "name": "Ловит мышей" },
+    { "name": "Спит 20 часов" }
   ],
   "image": "data:image/png;base64,..."
 }
 ```
 
-## OpenAPI Schema
+## OpenAPI schema
 
-Generate the schema:
+Генерация схемы:
 
 ```powershell
 cd C:\work-django\kitty-gram\backend
 .\venv\Scripts\python.exe manage.py generateschema > schema.yaml
 ```
 
-## Troubleshooting
+## Решение частых проблем
 
-### PowerShell blocks virtual environment activation
+### PowerShell блокирует активацию виртуального окружения
 
-If this command fails:
+Если команда завершается ошибкой:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-run Python directly from the virtual environment instead:
+запускайте Python напрямую из виртуального окружения:
 
 ```powershell
 .\venv\Scripts\python.exe manage.py runserver 127.0.0.1:8000
 ```
 
-### Frontend shows Network Error
+### Frontend показывает Network Error
 
-Make sure both servers are running:
+Убедитесь, что оба сервера запущены:
 
 - Backend: `http://127.0.0.1:8000/api/`
 - Frontend: `http://127.0.0.1:3000/`
 
-The frontend sends API requests to `http://127.0.0.1:8000/api`. If the backend terminal is closed, authentication and API requests will fail with a network error.
+Frontend отправляет API-запросы на `http://127.0.0.1:8000/api`. Если терминал backend закрыт, регистрация, вход и остальные API-запросы завершатся сетевой ошибкой.
